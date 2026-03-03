@@ -116,7 +116,7 @@ graph TD
 
 4. **AI Engine Tier (Ollama)**:
    - Deploy a dedicated Ubuntu EC2 instance.
-   - Permit Port 11434 from the Application EC2 Security Group.
+   - Open Inbound Port `11434` from the Application EC2 Security Group.
     
       ![ollama-sg](screenshots/8.png)
 
@@ -241,7 +241,7 @@ The [DevSecOps Pipeline](.github/workflows/devsecops.yml) automates the lifecycl
 - **Application Working**:
 
   ![app](screenshots/20.png)
-  
+
 - **Database Connectivity**: 
 
   ```bash
