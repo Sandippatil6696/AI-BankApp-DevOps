@@ -22,10 +22,21 @@ EOF
 systemctl daemon-reload
 systemctl restart ollama
 
-# 5. Wait for the service to restart
-sleep 10
+# 6. Wait for Ollama server to be ready (Health Check)
+echo "Waiting for Ollama server to start..."
+MAX_RETRIES=30
+RETRY_COUNT=0
+while ! curl -s http://localhost:11434/api/tags > /dev/null; do
+    RETRY_COUNT=$((RETRY_COUNT+1))
+    if [ $RETRY_COUNT -ge $MAX_RETRIES ]; then
+        echo "Ollama server failed to start in time."
+        exit 1
+    fi
+    sleep 2
+done
 
-# 6. Pull the required model
+# 7. Pull the required model
+echo "Pulling tinyllama model..."
 ollama pull tinyllama
 
 echo "Ollama setup complete and listening on port 11434"

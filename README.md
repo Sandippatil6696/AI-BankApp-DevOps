@@ -176,10 +176,12 @@ The pipeline runs automatically on every `git push`:
 
 - **Check App Status**: `docker ps`
 - **Verify DB Rows**: 
+
   ```bash
   mysql -h <RDS-ENDPOINT> -u admin -p bankappdb -e "SELECT * FROM accounts;"
   ```
 - **Check AI Connectivity**:
+
   ```bash
   nc -zv <OLLAMA-PRIVATE-IP> 11434
   ```
