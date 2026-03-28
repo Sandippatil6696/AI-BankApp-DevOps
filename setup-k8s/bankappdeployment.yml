@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: bankapp-cont
-        image: trainwithshubham/ai-bankapp:latest
+        image: ai-bankapp:latest
         ports:
         - containerPort: 8080
 
