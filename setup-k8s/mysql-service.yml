@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+
+# i do not want to expose my mysql service to externally so i used cluster ip i.e accessible from cluster ip only 
+type: ClusterIp
+
+metadata:
+  name: mysql-Service
+  namespace: bankapp
+
+spec:
+  selector:
+    app: mysql
+  ports:
+      port: 3306
+  
+    
