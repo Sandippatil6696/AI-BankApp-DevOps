@@ -23,7 +23,7 @@ spec:
 
         envFrom:
         - configMapRef:
-          name: bankapp-configmap
+            name: bankapp-configmap
 
         - secretRef:
-          name: bankapp-secrets
+            name: bankapp-secrets
