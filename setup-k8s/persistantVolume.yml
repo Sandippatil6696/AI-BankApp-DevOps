@@ -1,0 +1,19 @@
+Kind: PersistentVolume
+apiVersion: v1
+
+metadata:
+  name: mysql-pv 
+  namespace: bankapp
+  labels:
+    app: mysql
+
+spec:
+  capacity:
+    storage: 5Gi
+  storageClassName: manual 
+  accessModes:
+    - ReadWriteOnce
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+      path: /mnt/data
