@@ -27,6 +27,7 @@ spec:
         ports:
         - containerPort: 3306
 
+        # declaring env & secret variable  from configMap & secrets
         env:
 
           - name: MYSQL_DATABASE
@@ -41,10 +42,18 @@ spec:
                 name: bankapp-secrets
                 key: MYSQL_ROOT_PASSWORD
         
+        # declaring volume from pv & pvc 
         volumeMounts:
         - name: mysql-vol
           mountPath: /var/lib/mysql
-      
+
+        # declaring healcheck in k8s used probes
+        readinessProbe:
+          exec:
+            command: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+          initialDelaySeconds: 15
+          periodSeconds: 10
+
       volumes:
         - name: mysql-vol
           persistentVolumeClaim:
