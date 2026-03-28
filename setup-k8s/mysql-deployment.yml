@@ -50,7 +50,7 @@ spec:
         # declaring healcheck in k8s used probes
         readinessProbe:
           exec:
-            command: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+            command: ["mysqladmin", "ping", "-h", "localhost"]
           initialDelaySeconds: 15
           periodSeconds: 10
 
