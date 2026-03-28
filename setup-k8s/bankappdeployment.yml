@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: bankapp-cont
-        image: ai-bankapp:latest
+        image: sandippatil6696/ai-bankapp:v1
         ports:
         - containerPort: 8080
 
