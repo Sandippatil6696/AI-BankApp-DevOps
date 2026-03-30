@@ -45,8 +45,12 @@ spec:
         image: sandippatil6696/ai-bankapp:v1
         ports:
         - containerPort: 8080
-        
 
+        envFrom:
+            - configMapRef:
+                name: bankapp-configmap
+            - secretRef:
+                name: bankapp-secrets
 
         resources:
           requests:
@@ -55,3 +59,18 @@ spec:
           limits:
             memory: "512Mi"
             cpu: "500m"
+        
+        readinessProbe:
+          httpGet:
+              path: /actuator/health
+              port: 8080
+          initialDelaySeconds: 30
+          failureThreshold: 15
+      
+        livenessProbe:
+          httpGet:
+              path: /actuator/health
+              port: 8080
+          initialDelaySeconds: 30
+          failureThreshold: 15
+          periodSeconds: 10
