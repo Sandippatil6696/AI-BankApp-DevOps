@@ -10,7 +10,9 @@ spec:
   selector:
     app: bankapp
   ports:
-    - port: 8080 # you want to run app on which port on host machine 
-      nodePort: 30080
-  
+    - port: 8080 # This is your service port  
+      targetPort: 8080 # port inside container i.e deployment port 
+      nodePort: 30080  # this is worker node port 
+
+
     
