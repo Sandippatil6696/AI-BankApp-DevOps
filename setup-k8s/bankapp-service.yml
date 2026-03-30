@@ -11,6 +11,6 @@ spec:
     app: bankapp
   ports:
     - port: 8080 # you want to run app on which port on host machine 
-      targetPort: 8080  # app ruuning on port inside pod on 8080 port
+      NodePort: 30080
   
     
