@@ -11,6 +11,6 @@ spec:
     app: bankapp
   ports:
     - port: 8080 # you want to run app on which port on host machine 
-      NodePort: 30080
+      nodePort: 30080
   
     
