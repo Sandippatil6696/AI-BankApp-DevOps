@@ -17,6 +17,7 @@ spec:
     spec:
       containers:
       - name: bankapp-cont
+        imagePullPolicy: IfNotPresent
         image: sandippatil6696/ai-bankapp:v1
         ports:
         - containerPort: 8080
@@ -27,3 +28,11 @@ spec:
 
         - secretRef:
             name: bankapp-secrets
+        
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
