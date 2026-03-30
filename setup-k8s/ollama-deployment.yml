@@ -46,8 +46,8 @@ spec:
                 - /bin/sh
                 - c 
                 - |
-                - until ollama list > /dev/null 2>&1; do sleep 2; done
-                - ollama pull tinyllama
+                  until ollama list > /dev/null 2>&1; do sleep 2; done
+                  ollama pull tinyllama
 
         # declaring healhcheck in k8s used probes i.e to check pod is ready to serve traffic
         readinessProbe:
