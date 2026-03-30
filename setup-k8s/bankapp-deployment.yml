@@ -18,7 +18,7 @@ spec:
     spec:
       initContainers:
       - name: wait-for-mysql
-        image: busybox:1.37
+        image: busybox:1.36
         command: ["/bin/sh", "-c", "until nc -z mysql-service 3306; do sleep 2; done"]
         resources:
           requests:
@@ -29,7 +29,7 @@ spec:
             cpu: "100m"
       
       - name: wait-for-ollama
-        image: busybox:1.37
+        image: busybox:1.36
         command: ["/bin/sh", "-c", "until nc -z ollama-service 11434; do sleep 2; done"]
         resources:
           requests:
