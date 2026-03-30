@@ -34,17 +34,17 @@ spec:
         resources:
           requests:
             memory: "256Mi"
-            cpu: "250m"
+            cpu: "500m"
           limits:
             memory: "512Mi"
-            cpu: "500m"
+            cpu: "1000m"
 
         lifecycle:
           postStart:
             exec:
               command:
                 - /bin/sh
-                - c 
+                - -c 
                 - |
                   until ollama list > /dev/null 2>&1; do sleep 2; done
                   ollama pull tinyllama
@@ -63,8 +63,8 @@ spec:
             path: /
             port: 11434
           initialDelaySeconds: 60
-          periodSeconds: 20
-          failureThreshold: 3
+          periodSeconds: 10
+          failureThreshold: 5
 
       volumes:
         - name: ollama-vol
