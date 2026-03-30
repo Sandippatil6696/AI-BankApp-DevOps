@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: ollama-deployment
+  namespace: bankapp
+  labels:
+    app: ollama
+
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ollama
+
+  template:
+    metadata:
+      labels:
+        app: ollama
+    spec:
+      containers:
+      - name: ollama-cont
+        image: ollama/ollama:latest
+        ports:
+        - containerPort: 11434
+        
+        # declaring volume from pv & pvc 
+        volumeMounts:
+        - name: ollama-vol
+          mountPath: /root/.ollama
+
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+
+        lifecycle:
+          postStart:
+            exec:
+              command:
+                - /bin/sh
+                - c 
+                - |
+                - until ollama list > /dev/null 2>&1; do sleep 2; done
+                - ollama pull tinyllama
+
+        # declaring healhcheck in k8s used probes i.e to check pod is ready to serve traffic
+        readinessProbe:
+          exec:
+            command: ["/bin/sh", "-c", "ollama list | grep -a tinyllama"]
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          failureThreshold: 10
+        
+        # livenessprobe is used to check whether pod is running or not if not then restart it 
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 11434
+          initialDelaySeconds: 60
+          periodSeconds: 20
+          failureThreshold: 3
+
+      volumes:
+        - name: ollama-vol
+          persistentVolumeClaim:
+            claimName: ollama-pvc
+              
