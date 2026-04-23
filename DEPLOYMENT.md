@@ -131,6 +131,12 @@ kubectl get secret kube-prometheus-grafana -n monitoring \
 docker buildx build --platform linux/amd64 \
   -t sandippatil6696/ai-bankapp-eks:latest \
   --push .
+
+or 
+
+docker build -t sandippatil6696/ai-bankapp-eks:latest .
+docker push sandippatil6696/ai-bankapp-eks:latest
+
 ```
 
 ## Step 8: Deploy via ArgoCD
