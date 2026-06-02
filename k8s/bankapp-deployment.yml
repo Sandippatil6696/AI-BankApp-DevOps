@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: bankapp
   namespace: bankapp
-  metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
