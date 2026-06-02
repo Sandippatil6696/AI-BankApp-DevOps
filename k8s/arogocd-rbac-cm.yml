@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-rbac-cm
+  namespace: argocd
+data:
+  policy.csv: |
+    p, role:bankapp-dev, applications, get, bankapp-team/*, allow
+    p, role:bankapp-dev, applications, sync, bankapp-team/*, allow
+    p, role:bankapp-dev, applications, rollback, bankapp-team/*, deny
+    g, bankapp-developers, role:bankapp-dev
