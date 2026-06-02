@@ -6,7 +6,6 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
 data:
-  APP_NAME: manual-sync-argocd-appp
   MYSQL_HOST: mysql-service
   MYSQL_PORT: "3306"
   MYSQL_DATABASE: bankappdb
