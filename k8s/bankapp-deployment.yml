@@ -49,10 +49,10 @@ spec:
                 name: bankapp-secret
           resources:
             requests:
-              memory: "0Mi"
+              memory: "256Mi"
               cpu: "250m"
             limits:
-              memory: "10Mi"
+              memory: "512Mi"
               cpu: "500m"
           readinessProbe:
             httpGet:
